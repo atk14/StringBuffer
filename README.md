@@ -15,7 +15,7 @@ Basic usage
 Installation
 ------------
 
-Use the Composer to install the panel.
+Use the Composer to install StringBuffer.
 
     cd path/to/your/project/
     composer require atk14/string-buffer dev-master
