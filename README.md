@@ -8,9 +8,9 @@ Basic usage
 
     $sb = new StringBuffer();
     $sb->addString("Hello World!\n");
-    $db->addFile("path/to/file");
-    $length = $db->getLength();
-    $db->printOut();
+    $sb->addFile("path/to/file");
+    $length = $sb->getLength();
+    $sb->printOut();
 
 Installation
 ------------
