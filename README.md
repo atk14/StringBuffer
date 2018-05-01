@@ -12,13 +12,21 @@ Basic usage
     $length = $sb->getLength();
     $sb->printOut();
 
+Converting StringBuffer into a string:
+
+    $string = (string)$sb;
+    // or
+    $string = "$sb";
+    // or
+    $string = $sb->toString();
+
 Installation
 ------------
 
 Use the Composer to install StringBuffer.
 
     cd path/to/your/project/
-    composer require atk14/string-buffer dev-master
+    composer require atk14/string-buffer
 
 Licence
 -------
