@@ -1,7 +1,7 @@
 {
         "name": "atk14/string-buffer",
         "type": "library",
-        "description": "StringBuffer is a PHP class providing operations for string buffering",
+        "description": "StringBuffer is a PHP class providing operations for efficient string buffering",
         "keywords": ["string","strings","buffer","buffering"],
         "homepage": "https://github.com/atk14/StringBuffer",
         "license": ["MIT"],

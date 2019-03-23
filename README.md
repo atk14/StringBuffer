@@ -1,7 +1,7 @@
 StringBuffer
 ============
 
-StringBuffer is a PHP class providing operations for string buffering
+StringBuffer is a PHP class providing operations for efficient string buffering
 
 Basic usage
 -----------
