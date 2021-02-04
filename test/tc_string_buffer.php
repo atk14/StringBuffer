@@ -116,6 +116,8 @@ class TcStringBuffer extends TcBase{
 		$buffer->addFile("lorem.txt");
 		//
 		$this->assertEquals("lorem ipsum dolor sit ametlorem ipsum dolor sit amet",$buffer->substr(0));
-		$this->assertEquals("lorem ipsum dolor sit ametlorem ipsum dolor sit amet",$buffer->substr(0));
+		$this->assertEquals("lorem ipsum",$buffer->substr(0,11));
+		$this->assertEquals("sit ametlorem ipsum dolor sit amet",$buffer->substr(18));
+		$this->assertEquals("r sit amet",$buffer->substr(-10));
 	}
 }
