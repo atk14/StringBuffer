@@ -31,4 +31,4 @@ Use the Composer to install StringBuffer.
 Licence
 -------
 
-Translate is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
+StringBuffer is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
