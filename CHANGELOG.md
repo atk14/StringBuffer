@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.1.2] - 2021-02-05
+
+- Files are being opened in the binary mode
+
 ## [1.1.1] - 2021-02-05
 
 - StringBufferFileItem throws an exception when there is something wrong with the file
