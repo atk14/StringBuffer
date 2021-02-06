@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2] - 2021-02-06
+
+- Added method StringBuffer::writeToFile()
+- Added StringBufferTemporary, which can help with memory optimization
+
 ## [1.1.2] - 2021-02-05
 
 - Files are being opened in the binary mode
