@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2.1] - 2021-02-06
+
+- StringBufferTemporary optimized
+
 ## [1.2] - 2021-02-06
 
 - Added method StringBuffer::writeToFile()
