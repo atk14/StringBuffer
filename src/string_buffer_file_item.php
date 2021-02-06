@@ -6,6 +6,8 @@
  */
 class StringBufferFileItem extends StringBufferItem{
 
+	protected $_Filename;
+
 	/**
 	 * Initializes String buffer element
 	 *
@@ -13,6 +15,19 @@ class StringBufferFileItem extends StringBufferItem{
 	 */
 	function __construct($filename){
 		$this->_Filename = $filename;
+	}
+
+	function getFilename(){
+		return $this->_Filename;
+	}
+
+	function getContent(){
+		if(!is_null($this->_String)){ return parent::getContent(); }
+		$content = Files::GetFileContent($this->_Filename,$err,$err_msg);
+		if($err){
+			throw new Exception(get_class($this).": cannot read file $this->_Filename ($err_msg)");
+		}
+		return $content;
 	}
 
 	/**
@@ -26,7 +41,7 @@ class StringBufferFileItem extends StringBufferItem{
 		if(isset($this->_String)){ return parent::getLength(); }
 		$size = filesize($this->_Filename);
 		if($size === false){
-			throw new Exception("StringBufferFileItem: cannot get the size of file $this->_Filename");
+			throw new Exception(get_class($this).": cannot get the size of file $this->_Filename");
 		}
 		return $size;
 	}
@@ -34,20 +49,6 @@ class StringBufferFileItem extends StringBufferItem{
 	function flush(){
 		if(isset($this->_String)){ return parent::flush(); }
 		readfile($this->_Filename);
-	}
-
-	/**
-	 * Outputs content of buffer as string.
-	 *
-	 * @return string
-	 */
-	function toString(){
-		if(isset($this->_String)){ return parent::toString(); }
-		$content = Files::GetFileContent($this->_Filename,$err,$err_msg);
-		if($err){
-			throw new Exception("StringBufferFileItem: cannot read file $this->_Filename ($err_msg)");
-		}
-		return $content;
 	}
 
 	/**
@@ -67,15 +68,15 @@ class StringBufferFileItem extends StringBufferItem{
 		}
 		$f = fopen($this->_Filename,"rb"); // reading + binary
 		if($f === false){
-			throw new Exception("cannot open file $this->_Filename for reading");
+			throw new Exception(get_class($this).": cannot open file $this->_Filename for reading");
 		}
 		$ret = fseek($f,$offset);
 		if($ret !== 0){
-			throw new Exception("cannot do fseek in file $this->_Filename");
+			throw new Exception(get_class($this).": cannot do fseek in file $this->_Filename");
 		}
 		$out = fread($f,$length);
 		if($out === false){
-			throw new Exception("cannot read from file $this->_Filename");
+			throw new Exception(get_class($this).": cannot read from file $this->_Filename");
 		}
 		fclose($f);
 		return $out;

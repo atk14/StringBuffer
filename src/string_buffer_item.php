@@ -6,13 +6,19 @@
  */
 class StringBufferItem{
 
+	protected $_String = null;
+
 	/**
 	 * Initializes file buffer element
 	 *
 	 * @param string $string
 	 */
 	function __construct($string){
-		$this->_String = $string;
+		$this->_String = (string)$string;
+	}
+
+	function getContent(){
+		return $this->_String;
 	}
 
 	/**
@@ -20,20 +26,21 @@ class StringBufferItem{
 	 *
 	 * @return int
 	 */
-	function getLength(){ return strlen($this->_String); }
-	function flush(){ echo $this->_String; }
+	function getLength(){ return strlen($this->getContent()); }
+
+	function flush(){ echo $this->getContent(); }
 
 	/**
 	 * Returns string representation of the object.
 	 *
 	 * @return string
 	 */
-	function toString(){ return $this->_String; }
+	final function toString(){ return $this->getContent(); }
 
 	/**
 	 * Method that returns string representation of the object.
 	 */
-	function __toString(){ return $this->toString(); }
+	final function __toString(){ return $this->toString(); }
 
 	/**
 	 * Replace part of string in buffer

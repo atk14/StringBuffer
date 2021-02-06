@@ -1,5 +1,6 @@
 <?php
 class TcStringBuffer extends TcBase{
+
 	function test__toString(){
 		$buffer = new StringBuffer("Hello World!");
 
@@ -14,10 +15,20 @@ class TcStringBuffer extends TcBase{
 		$this->assertEquals("Just a Simple\nTest","$buffer");
 		$this->assertEquals(18,$buffer->getLength());
 
+		$items = $buffer->getItems();
+		$this->assertEquals(3,sizeof($items));
+		$this->assertEquals("Just",$items[0]->getContent());
+		$this->assertEquals(" a Simple",$items[1]->getContent());
+		$this->assertEquals("\nTest",$items[2]->getContent());
+
 		$lorem = new StringBuffer();
 		$lorem->addFile("lorem.txt");
 		$this->assertEquals("lorem ipsum dolor sit amet","$lorem");
 		$this->assertEquals(26,$lorem->getLength());
+
+		$items = $lorem->getItems();
+		$this->assertEquals(1,sizeof($items));
+		$this->assertEquals("lorem ipsum dolor sit amet",$items[0]->getContent());
 
 		$buffer->addStringBuffer($lorem);
 		$this->assertEquals("Just a Simple\nTestlorem ipsum dolor sit amet","$buffer");

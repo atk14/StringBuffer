@@ -20,7 +20,7 @@ class StringBuffer{
 	 * @ignore
 	 * @var array
 	 */
-	private $_Buffer = array();
+	protected $_Items = array();
 	
 	/**
 	 * Creates new instance of StringBuffer.
@@ -42,7 +42,7 @@ class StringBuffer{
 	 * @return string
 	 */
 	function toString(){
-		return join("",$this->_Buffer);
+		return join("",$this->_Items);
 	}
 
 	/**
@@ -57,6 +57,10 @@ class StringBuffer{
 	function __toString(){
 		return $this->toString();
 	}
+
+	function getItems(){
+		return $this->_Items;
+	}
 	
 	/**
 	 * Adds another string to the buffer.
@@ -66,7 +70,7 @@ class StringBuffer{
 	function addString($string_to_add){
 		settype($string_to_add,"string");
 		if(strlen($string_to_add)>0){
-			$this->_Buffer[] = new StringBufferItem($string_to_add);
+			$this->_Items[] = new StringBufferItem($string_to_add);
 		}
 	}
 
@@ -78,7 +82,7 @@ class StringBuffer{
 	 * @param string $filename
 	 */
 	function addFile($filename){
-		$this->_Buffer[] = new StringBufferFileItem($filename);
+		$this->_Items[] = new StringBufferFileItem($filename);
 	}
 
 	/**
@@ -88,8 +92,8 @@ class StringBuffer{
 	 */
 	function addStringBuffer($stringbuffer_to_add){
 		if(!isset($stringbuffer_to_add)){ return;}
-		for($i=0;$i<sizeof($stringbuffer_to_add->_Buffer);$i++){
-			$this->_Buffer[] = $stringbuffer_to_add->_Buffer[$i];
+		for($i=0;$i<sizeof($stringbuffer_to_add->_Items);$i++){
+			$this->_Items[] = $stringbuffer_to_add->_Items[$i];
 		}
 	}
 
@@ -100,8 +104,8 @@ class StringBuffer{
 	 */
 	function getLength(){
 		$out = 0;
-		for($i=0;$i<sizeof($this->_Buffer);$i++){
-			$out = $out + $this->_Buffer[$i]->getLength();
+		for($i=0;$i<sizeof($this->_Items);$i++){
+			$out = $out + $this->_Items[$i]->getLength();
 		}
 		return $out;
 	}
@@ -110,8 +114,8 @@ class StringBuffer{
 	 * Echoes content of buffer.
 	 */
 	function printOut(){
-		for($i=0;$i<sizeof($this->_Buffer);$i++){
-			$this->_Buffer[$i]->flush();
+		for($i=0;$i<sizeof($this->_Items);$i++){
+			$this->_Items[$i]->flush();
 		}
 	}
 
@@ -119,7 +123,7 @@ class StringBuffer{
 	 * Clears buffer.
 	 */
 	function clear(){
-		$this->_Buffer = array();
+		$this->_Items = array();
 	}
 
 	/**
@@ -138,8 +142,8 @@ class StringBuffer{
 			$replace = $replace->toString();
 		}
 
-		for($i=0;$i<sizeof($this->_Buffer);$i++){
-			$this->_Buffer[$i]->replace($search,$replace);
+		for($i=0;$i<sizeof($this->_Items);$i++){
+			$this->_Items[$i]->replace($search,$replace);
 		}
 	}
 
@@ -158,7 +162,7 @@ class StringBuffer{
 		}
 
 		$out = "";
-		foreach($this->_Buffer as $b){
+		foreach($this->_Items as $b){
 			if(!is_null($length) && $length<=0){
 				break;
 			}
