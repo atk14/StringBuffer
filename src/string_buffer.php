@@ -180,4 +180,50 @@ class StringBuffer{
 		}
 		return $out;
 	}
+
+	/**
+	 * Writes the whole content to the given file
+	 *
+	 * An exception is thrown when something went wrong with the file.
+	 *
+	 * 	$buffer->writeToFile("path/to/file.dat");
+	 *
+	 * @param string $filename
+	 */
+	function writeToFile($filename){
+		if(!file_exists($filename)){
+			// File is created with class Files in order to maintain file permissions
+			Files::TouchFile($filename,$err,$err_str);
+			if($err){
+				throw new Exception(get_class($this).": cannot do touch on $filename ($err_msg)");
+			}
+		}
+
+		$total_length = $this->getLength();
+		$chunk_size = 1024 * 1024; // 1MB
+		$bytes_written = 0;
+
+		if($total_length===0){
+			Files::EmptyFile($filename,$err,$err_str);
+			if($err){
+				throw new Exception(get_class($this).": cannot empty file $filename ($err_msg)");
+			}
+			return;
+		}
+
+		$f = fopen($filename,"w");
+		if($f === false){
+			throw new Exception(get_class($this).": cannot open $filename for writing");
+		}
+		while($bytes_written < $total_length){
+			$length = min($chunk_size,$total_length - $bytes_written);
+			$chunk = $this->substr($bytes_written,$length);
+			$_bytes = fwrite($f,$chunk,$length);
+			if($_bytes !== $length){
+				throw new Exception(get_class($this).": cannot write to $filename");
+			}
+			$bytes_written += $length;
+		}
+		fclose($f);
+	}
 }
