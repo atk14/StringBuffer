@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2.2] - 2021-02-7
+
+- Fix - stale file removed
+
 ## [1.2.1] - 2021-02-06
 
 - StringBufferTemporary optimized
