@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2.4] - 2021-05-24
+
+- If the output buffering is active it is turned off in StringBufferFileItem::flush()
+
 ## [1.2.3] - 2021-04-27
 
 - Fix
