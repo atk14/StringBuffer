@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2.5] - 2026-04-01
+
+* 64b9cda - StringBuffer::substr() fixed for negative offsets
+* a586890 - Added alias StringBuffer::add() for StringBuffer::addString()
+* 97a8da2 - Added static property StringBufferTemporary::$FILEIZE_THRESHOLD
+* Some smelly code rewritten
+
 ## [1.2.4] - 2021-05-24
 
 - If the output buffering is active it is turned off in StringBufferFileItem::flush()
