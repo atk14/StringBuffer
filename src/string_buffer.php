@@ -199,7 +199,7 @@ class StringBuffer{
 			// File is created with class Files in order to maintain file permissions
 			Files::TouchFile($filename,$err,$err_str);
 			if($err){
-				throw new Exception(get_class($this).": cannot do touch on $filename ($err_msg)");
+				throw new Exception(get_class($this).": cannot do touch on $filename ($err_str)");
 			}
 		}
 
@@ -210,7 +210,7 @@ class StringBuffer{
 		if($total_length===0){
 			Files::EmptyFile($filename,$err,$err_str);
 			if($err){
-				throw new Exception(get_class($this).": cannot empty file $filename ($err_msg)");
+				throw new Exception(get_class($this).": cannot empty file $filename ($err_str)");
 			}
 			return;
 		}
