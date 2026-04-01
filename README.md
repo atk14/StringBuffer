@@ -1,7 +1,7 @@
 StringBuffer
 ============
 
-[![Build Status](https://app.travis-ci.com/atk14/StringBuffer.svg?branch=master)](https://app.travis-ci.com/atk14/StringBuffer)
+[![Tests](https://github.com/atk14/StringBuffer/actions/workflows/tests.yml/badge.svg)](https://github.com/atk14/StringBuffer/actions/workflows/tests.yml)
 
 StringBuffer is a PHP class providing operations for efficient string buffering
 
