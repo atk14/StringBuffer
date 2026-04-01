@@ -58,10 +58,20 @@ class StringBuffer{
 		return $this->toString();
 	}
 
+	/**
+	 * Returns all items stored in the buffer.
+	 *
+	 * @return StringBufferItem[]
+	 */
 	function getItems(){
 		return $this->_Items;
 	}
 
+	/**
+	 * Returns the last item in the buffer, or null if the buffer is empty.
+	 *
+	 * @return StringBufferItem|null
+	 */
 	function getLastItem(){
 		return $this->_Items ? $this->_Items[sizeof($this->_Items)-1] : null;
 	}
