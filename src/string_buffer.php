@@ -79,6 +79,13 @@ class StringBuffer{
 	}
 
 	/**
+	 * Alias for addString()
+	 */
+	function add($string_to_add){
+		return $this->addString($string_to_add);
+	}
+
+	/**
 	 * Add content of the given file to buffers
 	 *
 	 * $buffer->addFile("/path/to/file");

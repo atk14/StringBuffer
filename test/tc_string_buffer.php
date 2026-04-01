@@ -172,4 +172,10 @@ class TcStringBuffer extends TcBase{
 
 		$this->assertEquals(0,filesize($filename));
 	}
+
+	function test_add(){
+		$buffer = new StringBuffer();
+		$buffer->add("Hello World!");
+		$this->assertEquals("Hello World!",$buffer->toString());
+	}
 }

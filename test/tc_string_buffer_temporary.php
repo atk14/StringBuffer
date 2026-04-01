@@ -3,6 +3,8 @@ class TcStringBufferTemporary extends TcBase {
 
 	function test(){
 		$buffer = new StringBufferTemporary("Hello World!");
+		$buffer->addString("");
+		$buffer->addString(null);
 		$buffer->addString(" Hello again!");
 		$this->assertEquals("Hello World! Hello again!",$buffer);
 

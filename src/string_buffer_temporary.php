@@ -18,6 +18,8 @@ class StringBufferTemporary extends StringBuffer {
 	function addString($string_to_add){
 		$string_to_add = (string)$string_to_add;
 
+		if(!strlen($string_to_add)){ return; }
+
 		$last_item = $this->getLastItem();
 		if($last_item && !$last_item->isFileized()){
 			$last_item->addString($string_to_add);
