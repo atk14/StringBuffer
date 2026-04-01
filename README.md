@@ -3,18 +3,38 @@ StringBuffer
 
 [![Tests](https://github.com/atk14/StringBuffer/actions/workflows/tests.yml/badge.svg)](https://github.com/atk14/StringBuffer/actions/workflows/tests.yml)
 
-StringBuffer is a PHP class providing operations for efficient string buffering
+StringBuffer is a PHP class providing operations for efficient string buffering.
+It can hold a mix of plain strings and file contents, and treats them uniformly
+as a single continuous buffer.
+
+Installation
+------------
+
+    composer require atk14/string-buffer
 
 Basic usage
 -----------
 
     $sb = new StringBuffer();
     $sb->addString("Hello World!\n");
-    $sb->addFile("path/to/file");
+    $sb->addString(" How are you?");
+    $sb->addFile("/path/to/file");
+
     $length = $sb->getLength();
     $sb->printOut();
 
-Converting StringBuffer into a string:
+You can also pass an initial string to the constructor:
+
+    $sb = new StringBuffer("Hello World!");
+
+Combining buffers:
+
+    $sb1 = new StringBuffer("Hello");
+    $sb2 = new StringBuffer(" World!");
+    $sb1->addStringBuffer($sb2);
+    echo $sb1; // "Hello World!"
+
+Converting to string:
 
     $string = (string)$sb;
     // or
@@ -22,36 +42,49 @@ Converting StringBuffer into a string:
     // or
     $string = $sb->toString();
 
-Temporary buffer
-----------------
+Other operations:
 
-You can use StringBuffer to store and manipulate large chunks of data without consuming excessive memory.
+    // Replace a substring throughout the buffer
+    $sb->replace("World", "PHP");
+
+    // Extract a portion of the buffer (works like PHP's substr())
+    $part = $sb->substr(0, 5);
+    $last = $sb->substr(-3);
+
+    // Write the whole buffer to a file
+    $sb->writeToFile("/path/to/output.dat");
+
+    // Clear the buffer
+    $sb->clear();
+
+Memory-efficient temporary buffer
+----------------------------------
+
+`StringBufferTemporary` is a drop-in replacement for `StringBuffer` that
+automatically offloads content to a temporary file once it exceeds 1 MB.
+This keeps memory consumption low when working with large amounts of data.
 
     $buffer = new StringBufferTemporary();
 
-    // read something big in chunks
     $buffer->add($megabyte);
     $buffer->add($megabyte);
     $buffer->add($megabyte);
-    $buffer->add($megabyte);
-    $buffer->add($megabyte);
-    // and so on... :)
 
     $buffer->printOut();
     // or
     $buffer->writeToFile($target_filename);
 
-Constant TEMP can be defined in order to specify the desired temporary directory for storing string buffer items.
+Temporary files are created automatically and deleted when the buffer object
+is destroyed.
 
-    define("TEMP","/path/to/temp/");
+The threshold can be adjusted if needed:
 
-Installation
-------------
+    StringBufferTemporary::$FILEIZE_THRESHOLD = 512 * 1024; // 512 kB
 
-Use the Composer to install StringBuffer.
+The temporary directory defaults to the system temp dir. To override it,
+define the `TEMP` constant before using the class:
 
-    cd path/to/your/project/
-    composer require atk14/string-buffer
+    define("TEMP", "/path/to/temp/");
 
 Licence
 -------
