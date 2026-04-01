@@ -102,9 +102,9 @@ class StringBuffer{
 	 * @param StringBuffer $stringbuffer_to_add
 	 */
 	function addStringBuffer($stringbuffer_to_add){
-		if(!isset($stringbuffer_to_add)){ return;}
-		for($i=0;$i<sizeof($stringbuffer_to_add->_Items);$i++){
-			$this->_Items[] = $stringbuffer_to_add->_Items[$i];
+		if(is_null($stringbuffer_to_add)){ return;}
+		foreach($stringbuffer_to_add->getItems() as $item){
+			$this->_Items[] = $item;
 		}
 	}
 
@@ -115,8 +115,8 @@ class StringBuffer{
 	 */
 	function getLength(){
 		$out = 0;
-		for($i=0;$i<sizeof($this->_Items);$i++){
-			$out = $out + $this->_Items[$i]->getLength();
+		foreach($this->getItems() as $item){
+			$out += $item->getLength();
 		}
 		return $out;
 	}
@@ -125,8 +125,8 @@ class StringBuffer{
 	 * Echoes content of buffer.
 	 */
 	function printOut(){
-		for($i=0;$i<sizeof($this->_Items);$i++){
-			$this->_Items[$i]->flush();
+		foreach($this->getItems() as $item){
+			$item->flush();
 		}
 	}
 
