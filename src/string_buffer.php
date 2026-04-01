@@ -157,13 +157,18 @@ class StringBuffer{
 	/**
 	 * Returns the portion of buffered string specified by the offset and length parameters
 	 *
+	 *	$same = $buffer->substr(0);
+	 *	$one_less_byte = $buffer->substr(1);
+	 *	$last_5_bytes = $buffer->substr(-5);
 	 *	$part = $buffer->substr(10,20);
 	 */
 	function substr($offset,$length = null){
 		if($offset<0){
-			$offset = $this->getLength() - abs($offset);
+			if(is_null($length)){
+				$offset = $this->getLength() - abs($offset);
+			}
 			if($offset<0){
-				// $length = is_null($length) ? $length : $length - abs($offset);
+				$length = is_null($length) ? $length : $length - abs($offset);
 				$offset = 0;
 			}
 		}
