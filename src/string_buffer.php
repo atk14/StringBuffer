@@ -30,7 +30,7 @@ class StringBuffer{
 	 * @param string $string_to_add
 	 */
 	function __construct($string_to_add = ""){
-		settype($string_to_add,"string");
+		$string_to_add = (string)$string_to_add;
 		if(strlen($string_to_add)>0){
 			$this->addString($string_to_add);
 		}
@@ -72,7 +72,7 @@ class StringBuffer{
 	 * @param string $string_to_add
 	 */
 	function addString($string_to_add){
-		settype($string_to_add,"string");
+		$string_to_add = (string)$string_to_add;
 		if(strlen($string_to_add)>0){
 			$this->_Items[] = new StringBufferItem($string_to_add);
 		}
@@ -139,15 +139,11 @@ class StringBuffer{
 	 * @param string|StringBuffer $replace	replacement string. or another StringBuffer object
 	 */
 	function replace($search,$replace){
-		settype($search,"string");
+		$search = (string)$search;
+		$replace = (string)$replace;
 
-		// prevod StringBuffer na string
-		if(is_object($replace)){
-			$replace = $replace->toString();
-		}
-
-		for($i=0;$i<sizeof($this->_Items);$i++){
-			$this->_Items[$i]->replace($search,$replace);
+		foreach($this->_Items as &$item){	
+			$item->replace($search,$replace);
 		}
 	}
 
