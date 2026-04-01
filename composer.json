@@ -16,7 +16,7 @@
                 "atk14/files": ">=1.6"
         },
         "require-dev": {
-                "atk14/tester": "0.3.*"
+                "atk14/tester": "*"
         },
         "autoload": {
                 "classmap": ["src"]
