@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to StringBuffer will be documented in this file.
 
+## [1.2.6] - 2026-04-16
+
+* 9e2d3cd - Added a second parameter, $mode, to the writeToFile() method; the default is "w"
+
 ## [1.2.5] - 2026-04-01
 
 * 64b9cda - StringBuffer::substr() fixed for negative offsets
